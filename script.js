@@ -15,7 +15,7 @@ const CONFIG = {
     telefonoWhatsApp: "51998167789",
 
     // Mensaje predeterminado al hacer clic en contactar
-    mensajeWhatsApp: "Hola, estoy interesado en participar en tu rifa. ¿Qué números tienes disponibles?",
+    mensajeWhatsApp: "Hola, quiero apoyar a valentin 🥺 en tu rifa. Deseo el numero ",
 
     // Datos informativos
     precioNumero: "S/ 20",
@@ -192,7 +192,7 @@ function actualizarEstadisticas(stats) {
  */
 function configurarBotonesWhatsApp() {
     const enlaceWsp = `https://wa.me/${CONFIG.telefonoWhatsApp}?text=${encodeURIComponent(CONFIG.mensajeWhatsApp)}`;
-    
+
     // Todos los elementos con clase 'btn-whatsapp' o 'link-whatsapp'
     const botones = document.querySelectorAll(".accion-whatsapp");
     botones.forEach(btn => {
