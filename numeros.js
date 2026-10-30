@@ -40,7 +40,8 @@ const numeros = {
 
     // Números ya cancelados / vendidos (Color Rojo)
     noDisponibles: [
-        1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 51, 58, 53, 54, 88, 94, 95
+        1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 41, 58, 53, 54, 88, 94, 95,
+        77, 17, 66, 47, 36
     ],
 
     // Nombre y primer apellido de los participantes (para saber a quién pertenece cada número)
@@ -55,9 +56,10 @@ const numeros = {
         9: "Aaron Gaby",
         11: "Aaron Gaby",
         12: "Isabel Iannacone",
+        18: "Magaly Piedra",
         13: "Ursula Sanden",
         15: "Isabel Iannacone",
-        18: "Isabel Iannacone",
+        17: "Isabel Iannacone",
         19: "Jesus Abanto",
         21: "Lucero Rivera",
         22: "Aishe Karimah",
@@ -75,7 +77,13 @@ const numeros = {
         94: "Marjorie",
         95: "Giovi",
         10: "Gilmar",
-        51: "Akemi Vera"
+        41: "Akemi Vera",
+        99: "Gladys",
+        77: "Ysolda",
+        14: "Rafael",
+        66: "Fiorela Casimiro",
+        47: "Luciana Velasco",
+        36: "Luciana Velasco"
     }
 };
 
