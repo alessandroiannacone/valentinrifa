@@ -40,7 +40,7 @@ const numeros = {
 
     // Números ya cancelados / vendidos (Color Rojo)
     noDisponibles: [
-        1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 58, 53, 54, 88, 94, 95
+        1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 51, 58, 53, 54, 88, 94, 95
     ],
 
     // Nombre y primer apellido de los participantes (para saber a quién pertenece cada número)
@@ -74,7 +74,8 @@ const numeros = {
         54: "Michelle Mesias",
         94: "Marjorie",
         95: "Giovi",
-        10: "Gilmar"
+        10: "Gilmar",
+        51: "Akemi Vera"
     }
 };
 
