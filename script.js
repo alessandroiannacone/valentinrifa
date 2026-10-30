@@ -35,10 +35,10 @@ document.addEventListener("DOMContentLoaded", () => {
  */
 function inicializarRifa() {
     // Validar existencia de datos en 'numeros.js'
-    const datosRaw = typeof numeros !== "undefined" ? numeros : { disponibles: [], reservados: [], noDisponibles: [] };
+    const datosRaw = typeof numeros !== "undefined" ? numeros : { disponibles: [], reservados: [], noDisponibles: [], participantes: {} };
 
     // Sanitizar y validar los arrays para cumplir con todas las restricciones
-    const { reservadosSet, noDisponiblesSet } = sanitizarListas(datosRaw);
+    const { reservadosSet, noDisponiblesSet, participantesMap } = sanitizarListas(datosRaw);
 
     // Mapear el estado de cada uno de los 100 números (del 0 al 99)
     const estadoNumeros = [];
@@ -62,10 +62,13 @@ function inicializarRifa() {
             contadorDisponibles++;
         }
 
+        const participante = participantesMap.get(i) || "";
+
         estadoNumeros.push({
             numero: i,
             numeroFormateado: i.toString().padStart(2, "0"),
-            estado: estado
+            estado: estado,
+            participante: participante
         });
     }
 
@@ -86,6 +89,7 @@ function inicializarRifa() {
  * - Valida que sean enteros entre 0 y 99.
  * - Elimina duplicados.
  * - Resuelve colisiones (si está en reservados y noDisponibles, prevalece noDisponibles).
+ * - Mapea los nombres de participantes asociados a cada número.
  */
 function sanitizarListas(datos) {
     const filtrarValidos = (arr) => {
@@ -110,7 +114,21 @@ function sanitizarListas(datos) {
 
     const reservadosSet = new Set(reservadosLimpios);
 
-    return { reservadosSet, noDisponiblesSet };
+    // Sanitizar nombres de los participantes (acepta claves numéricas o con ceros a la izquierda)
+    const participantesMap = new Map();
+    if (datos && datos.participantes && typeof datos.participantes === "object") {
+        Object.entries(datos.participantes).forEach(([clave, nombre]) => {
+            const num = parseInt(clave, 10);
+            if (!isNaN(num) && num >= 0 && num < CONFIG.totalNumeros && typeof nombre === "string") {
+                const nombreLimpio = nombre.trim();
+                if (nombreLimpio) {
+                    participantesMap.set(num, nombreLimpio);
+                }
+            }
+        });
+    }
+
+    return { reservadosSet, noDisponiblesSet, participantesMap };
 }
 
 /**
@@ -130,6 +148,7 @@ function renderizarCuadricula(listaNumeros) {
         celda.id = `num-${item.numeroFormateado}`;
         celda.setAttribute("data-numero", item.numeroFormateado);
         celda.setAttribute("data-estado", item.estado);
+        celda.setAttribute("data-participante", item.participante);
         celda.setAttribute("role", "status");
 
         // Texto accesible para el estado
@@ -143,10 +162,15 @@ function renderizarCuadricula(listaNumeros) {
             iconoEstado = "🔴";
         }
 
-        celda.setAttribute("title", `Número ${item.numeroFormateado} • ${textoEstado}`);
+        let tituloTooltip = `Número ${item.numeroFormateado} • ${textoEstado}`;
+        if (item.participante) {
+            tituloTooltip += ` • Participante: ${item.participante}`;
+        }
+        celda.setAttribute("title", tituloTooltip);
 
         celda.innerHTML = `
             <span class="numero-digitos">${item.numeroFormateado}</span>
+            ${item.participante ? `<span class="numero-participante">${item.participante}</span>` : ""}
             <span class="numero-etiqueta">${textoEstado}</span>
         `;
 
@@ -234,12 +258,14 @@ function configurarBuscadorYFiltros() {
                 tarjeta.scrollIntoView({ behavior: "smooth", block: "center" });
 
                 const estado = tarjeta.getAttribute("data-estado");
+                const participante = tarjeta.getAttribute("data-participante");
                 let desc = "Disponible 🟢";
                 if (estado === "reservado") desc = "Reservado 🟠";
                 if (estado === "no-disponible") desc = "No disponible / Pagado 🔴";
 
                 if (resultadoBusqueda) {
-                    resultadoBusqueda.innerHTML = `Número <strong>${numPad}</strong>: <span class="badge-${estado}">${desc}</span>`;
+                    const extraParticipante = participante ? ` • 👤 <strong>${participante}</strong>` : "";
+                    resultadoBusqueda.innerHTML = `Número <strong>${numPad}</strong>: <span class="badge-${estado}">${desc}</span>${extraParticipante}`;
                 }
             } else {
                 if (resultadoBusqueda) {
@@ -274,16 +300,19 @@ function configurarBuscadorYFiltros() {
  * Modal para visualizar el afiche o premio en pantalla completa
  */
 function configurarModalImagen() {
-    const imgPremio = document.getElementById("img-premio-trigger");
+    const triggerPremio = document.getElementById("img-premio-trigger");
+    const aficheImg = document.getElementById("afiche-img");
     const modal = document.getElementById("modal-lightbox");
     const modalImg = document.getElementById("modal-img");
     const btnCerrar = document.getElementById("modal-cerrar");
 
-    if (!imgPremio || !modal) return;
+    if (!triggerPremio || !modal) return;
 
-    imgPremio.addEventListener("click", () => {
+    triggerPremio.addEventListener("click", () => {
         modal.classList.add("activo");
-        if (modalImg) modalImg.src = imgPremio.src;
+        if (modalImg && aficheImg) {
+            modalImg.src = aficheImg.src;
+        }
     });
 
     if (btnCerrar) {

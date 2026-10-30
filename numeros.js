@@ -39,11 +39,37 @@ const numeros = {
     reservados: [],
 
     // Números ya cancelados / vendidos (Color Rojo)
-    noDisponibles: [1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 18, 25, 26, 19, 21, 22, 27, 29, 30, 32, 33, 58, 88],
+    noDisponibles: [
+        1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 58, 88
+    ],
 
     // Nombre y primer apellido de los participantes (para saber a quién pertenece cada número)
     participantes: {
-        1: "Carlos Pérez"
+        1: "Gabriela Cañari",
+        2: "Gabriela Cañari",
+        3: "Rudy Reyson",
+        4: "Isabel Iannacone",
+        5: "Fatima Zamudio",
+        7: "Yoselin Huayhua",
+        8: "Patty Chloe",
+        9: "Aaron Gaby",
+        11: "Aaron Gaby",
+        12: "Isabel Iannacone",
+        13: "Ursula Sanden",
+        15: "Isabel Iannacone",
+        18: "Isabel Iannacone",
+        19: "Jesus Abanto",
+        21: "Lucero Rivera",
+        22: "Aishe Karimah",
+        25: "Isabel Iannacone",
+        26: "Aishe Karimah",
+        27: "Kristell Moreno",
+        29: "Fatima Zamudio",
+        30: "Sebastian Genesis",
+        32: "Ursula Sanden",
+        33: "Jeremias Mondragon",
+        58: "Fatima Zamudio",
+        88: "Fatima Zamudio"
     }
 };
 
