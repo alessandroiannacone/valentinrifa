@@ -13,7 +13,15 @@
  *    Agrégalos a la lista 'noDisponibles'.
  *    Ejemplo: noDisponibles: [3, 8, 15, 22, 47, 81]
  * 
- * 3. Para marcar un número como DISPONIBLE (Libre - Color Verde #16A34A):
+ * 3. Para asignar NOMBRE Y PRIMER APELLIDO a cualquier número:
+ *    Agrégalos en el diccionario 'participantes' con el número y el nombre.
+ *    Ejemplo:
+ *    participantes: {
+ *        1: "Carlos Pérez",
+ *        7: "María Gómez"
+ *    }
+ * 
+ * 4. Para marcar un número como DISPONIBLE (Libre - Color Verde #16A34A):
  *    Simplemente asegúrate de que NO esté ni en 'reservados' ni en 'noDisponibles'.
  *    Todos los números no incluidos se consideran disponibles automáticamente.
  * 
@@ -31,6 +39,11 @@ const numeros = {
     reservados: [],
 
     // Números ya cancelados / vendidos (Color Rojo)
-    noDisponibles: [1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 18, 25, 19, 21, 22, 27, 29, 32, 33, 58, 88]
+    noDisponibles: [1, 2, 3, 4, 5, 7, 8, 9, 11, 12, 13, 15, 18, 25, 19, 21, 22, 27, 29, 30, 32, 33, 58, 88],
+
+    // Nombre y primer apellido de los participantes (para saber a quién pertenece cada número)
+    participantes: {
+        1: "Carlos Pérez"
+    }
 };
 
