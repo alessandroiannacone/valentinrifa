@@ -70,7 +70,7 @@ const numeros = {
         33: "Jeremias Mondragon",
         58: "Fatima Zamudio",
         88: "Fatima Zamudio",
-        55: "Carmen Ticlla"
+        53: "Carmen Ticlla"
     }
 };
 
