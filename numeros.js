@@ -31,6 +31,6 @@ const numeros = {
     reservados: [5, 12, 23, 44, 78],
 
     // Números ya cancelados / vendidos (Color Rojo)
-    noDisponibles: [3, 8, 15, 22, 47, 81, 99]
+    noDisponibles: [1, 2, 3, 5, 7, 8, 9, 11, 13, 19, 22, 29, 32, 33, 58, 88]
 };
 
