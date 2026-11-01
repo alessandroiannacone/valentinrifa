@@ -8,7 +8,7 @@ const numeros = {
 
     noDisponibles: [
         1, 2, 3, 4, 5, 7, 8, 9, 10, 11, 12, 13, 14, 15, 18, 19, 21, 22, 25, 26, 27, 29, 30, 32, 33, 41, 58, 53, 54, 88, 94, 95,
-        77, 17, 66, 47, 36, 99, 23, 31, 67, 68
+        77, 17, 66, 47, 36, 99, 23, 31, 67, 68, 76, 97, 96, 92
     ],
 
 
@@ -54,7 +54,11 @@ const numeros = {
         23: "Fanny",
         31: "Saddy",
         67: "Matthew Diaz",
-        68: "Maria Pinto"
+        68: "Maria Pinto",
+        76: "Gabriela Cañari",
+        97: "Ariana Fernandez Alvarado",
+        96: "Lore Llanos",
+        92: "Laura Llanos"
 
     }
 };
